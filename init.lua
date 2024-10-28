@@ -76,7 +76,7 @@ vim.opt.scrolloff = 10
 -- Set netrw listing style to tree view
 vim.g.netrw_liststyle = 3
 -- Open files in a new vertical split
-vim.g.netrw_browse_split = 4
+vim.g.netrw_browse_split = 0
 -- Use alternate vertical split
 vim.g.netrw_altv = 1
 -- Set the size of the netrw window
