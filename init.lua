@@ -90,6 +90,8 @@ vim.cmd 'hi! link netrwMarkFile Search'
 vim.api.nvim_set_keymap('i', '(', '()<Left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '[', '[]<Left>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', '{', '{}<Left>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', '"', '""<Left>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('i', "'", "''<Left>", { noremap = true, silent = true })
 
 -- Add auto-closing html tags
 vim.keymap.set('n', '<C-s>', '<esc>yiwi<lt><esc>ea></><esc>hpF>i')
@@ -159,6 +161,8 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 require('lazy').setup({
+  'udalov/kotlin-vim', -- Enable kotlin_language_server
+
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
@@ -732,7 +736,7 @@ require('lazy').setup({
     main = 'nvim-treesitter.configs', -- Sets main module to use for opts
     -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
     opts = {
-      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc' },
+      ensure_installed = { 'bash', 'c', 'diff', 'html', 'lua', 'luadoc', 'markdown', 'markdown_inline', 'query', 'vim', 'vimdoc', 'kotlin' },
       -- Autoinstall languages that are not installed
       auto_install = true,
       highlight = {
