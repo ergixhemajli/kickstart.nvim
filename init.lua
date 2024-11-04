@@ -71,6 +71,8 @@ vim.opt.cursorline = true
 -- Minimal number of screen lines to keep above and below the cursor.
 vim.opt.scrolloff = 10
 
+-- netrw settings
+--
 -- Disable the netrw banner
 -- vim.g.netrw_banner = 0
 -- Set netrw listing style to tree view
@@ -85,6 +87,13 @@ vim.g.netrw_winsize = 25
 vim.g.netrw_keepdir = 0
 vim.g.netrw_localcopydircmd = 'cp -r'
 vim.cmd 'hi! link netrwMarkFile Search'
+-- Add explorer shortcut
+vim.api.nvim_set_keymap('n', '<C-a>', ':Explore<CR>', { noremap = true, silent = true })
+
+-- navigate buffers with tab
+vim.api.nvim_set_keymap('n', '<tab>', ':bnext<cr>', { noremap = true, silent = true }) -- Next Tab
+vim.api.nvim_set_keymap('n', '<s-tab>', ':bprevious<cr>', { noremap = true, silent = true }) -- Previous tabeymap("n", "<tab>", ":bnext<cr>", opts) -- Next Tab
+vim.api.nvim_set_keymap('n', '<s-tab>', ':bprevious<cr>', { noremap = true, silent = true }) -- Previous tab
 
 -- Add auto-closing brackets in insert mode
 vim.api.nvim_set_keymap('i', '(', '()<Left>', { noremap = true, silent = true })
@@ -760,11 +769,6 @@ require('lazy').setup({
   -- init.lua. If you want these files, they are in the repository, so you can just download them and
   -- place them in the correct locations.
 
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for Kickstart
-  --
-  --  Here are some example plugins that I've included in the Kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
   -- require 'kickstart.plugins.debug',
   -- require 'kickstart.plugins.indent_line',
   -- require 'kickstart.plugins.lint',
