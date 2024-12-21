@@ -87,13 +87,10 @@ vim.g.netrw_winsize = 25
 vim.g.netrw_keepdir = 0
 vim.g.netrw_localcopydircmd = 'cp -r'
 vim.cmd 'hi! link netrwMarkFile Search'
--- Add explorer shortcut
-vim.api.nvim_set_keymap('n', '<C-a>', ':Explore<CR>', { noremap = true, silent = true })
 
--- navigate buffers with tab
-vim.api.nvim_set_keymap('n', '<tab>', ':bnext<cr>', { noremap = true, silent = true }) -- Next Tab
-vim.api.nvim_set_keymap('n', '<s-tab>', ':bprevious<cr>', { noremap = true, silent = true }) -- Previous tabeymap("n", "<tab>", ":bnext<cr>", opts) -- Next Tab
-vim.api.nvim_set_keymap('n', '<s-tab>', ':bprevious<cr>', { noremap = true, silent = true }) -- Previous tab
+-- Add explorer shortcut to nvim tree
+--vim.api.nvim_set_keymap('n', '<C-a>', ':Explore<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-a>', ':Neotree<CR>', { noremap = true, silent = true })
 
 -- Add auto-closing brackets in insert mode
 vim.api.nvim_set_keymap('i', '(', '()<Left>', { noremap = true, silent = true })
@@ -173,6 +170,17 @@ require('lazy').setup({
   'udalov/kotlin-vim', -- Enable kotlin_language_server
 
   'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+
+  {
+    'nvim-neo-tree/neo-tree.nvim',
+    branch = 'v3.x',
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'nvim-tree/nvim-web-devicons', -- not strictly required, but recommended
+      'MunifTanjim/nui.nvim',
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    },
+  },
 
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
