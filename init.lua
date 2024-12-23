@@ -167,9 +167,19 @@ vim.opt.rtp:prepend(lazypath)
 --    :Lazy update
 --
 require('lazy').setup({
-  'udalov/kotlin-vim', -- Enable kotlin_language_server
+  -- 'udalov/kotlin-vim', -- Enable kotlin_language_server
 
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  -- 'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
+  {
+    'nvimdev/dashboard-nvim',
+    event = 'VimEnter',
+    config = function()
+      require('dashboard').setup {
+        -- config
+      }
+    end,
+    dependencies = { { 'nvim-tree/nvim-web-devicons' } },
+  },
 
   {
     'nvim-neo-tree/neo-tree.nvim',
@@ -465,15 +475,6 @@ require('lazy').setup({
         ts_ls = {
           settings = {
             ts_ls = {
-              completion = {
-                callSnippet = 'Replace',
-              },
-            },
-          },
-        },
-        kotlin_language_server = {
-          settings = {
-            kotlin_language_server = {
               completion = {
                 callSnippet = 'Replace',
               },
