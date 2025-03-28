@@ -501,6 +501,8 @@ require('lazy').setup({
         r_language_server = {},
 
         kotlin_language_server = {},
+
+        gopls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -517,6 +519,11 @@ require('lazy').setup({
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
         'ktlint',
+        'goimports',
+        'gofumpt',
+        'gomodifytags',
+        'impl',
+        'delve',
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
