@@ -360,7 +360,7 @@ require('lazy').setup({
       -- Automatically install LSPs and related tools to stdpath for Neovim
       { 'williamboman/mason.nvim', config = true }, -- NOTE: Must be loaded before dependants
       'williamboman/mason-lspconfig.nvim',
-      'WhoIsSethDaniel/mason-tool-installer.nvim',
+      { 'WhoIsSethDaniel/mason-tool-installer.nvim' },
 
       -- Useful status updates for LSP.
       -- NOTE: `opts = {}` is the same as calling `require('fidget').setup({})`
@@ -468,10 +468,6 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
-        -- rust_analyzer = {},
         ts_ls = {
           settings = {
             ts_ls = {
@@ -503,6 +499,33 @@ require('lazy').setup({
         kotlin_language_server = {},
 
         gopls = {},
+
+        graphql = { filetypes = {
+          'graphql',
+        } },
+
+        jdtls = {},
+
+        kotlin_language_server = {
+          filetypes = {
+            'kotlin',
+          },
+          root_dir = function()
+            return vim.fn.getcwd()
+          end,
+          settings = {
+            kotlin = { compiler = { jvm = { target = '21' } } },
+            hints = {
+              typeHints = true,
+              parameterHints = true,
+              chainedHints = true,
+            },
+          },
+        },
+
+        pyright = {},
+
+        yamlls = {},
       }
 
       -- Ensure the servers and tools above are installed
@@ -517,7 +540,7 @@ require('lazy').setup({
       -- for you, so that they are available from within Neovim.
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
-        'stylua', -- Used to format Lua code
+        'stylua',
         'ktlint',
         'goimports',
         'gofumpt',
